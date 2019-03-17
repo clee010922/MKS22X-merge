@@ -8,13 +8,12 @@ public class Merge {
     mergesort(data, temp, 0, data.length);
   }
 
-  private static void mergesort(int[] data, int[] temp, int lo, int hi) {
-    int[] copy = new int[data.length/2];
-    int[] copy2 = new int[data.length - copy.length];
+  private static void mergesort(int[] data, int lo, int hi) {
+    int m = (lo+hi)/2;
     if (lo < hi) {
-      mergesort(data, copy, lo, copy.length-1);
-      mergesort(data, copy2, );
-      merge();
+      mergesort(data, lo, m;);
+      mergesort(data, m+1, hi);
+      merge(data, lo, hi);
     }
   }
 
