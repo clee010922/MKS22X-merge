@@ -63,6 +63,12 @@ public class Merge {
     return result;
   }
 
+  public static void main(String[] args) {
+    int[] data = {6, 5, 4, 3, 2, 1, 0};
+    mergesort(data);
+    System.out.println(printArray(data));
+  }
+
   /*
   public static void main(String[]args){
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
