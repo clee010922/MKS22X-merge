@@ -3,54 +3,55 @@ import java.util.*;
 public class Merge {
 
   public static void mergesort(int[] data) {
-    mergesort(data, 0, data.length-1);
+    mergesort(data, 0, data.length-1); //wrapper function
   }
 
   private static void mergesort(int[] data, int lo, int hi) {
     if (lo < hi) {
-      int m = (lo+hi)/2;
-      int[] left = new int[m-lo+1];
-      int[] right = new int[hi-m];
+      int m = (lo+hi)/2; //the index of the middle value when the array is split into halves
+      int[] left = new int[m-lo+1]; //left half of the splitted array
+      int[] right = new int[hi-m]; //right half of the splitted array
       for (int i = 0; i < left.length; i++) {
-        left[i] = data[lo+i];
+        left[i] = data[lo+i]; //copying over values to the left half array
       }
       for (int i = 0; i < right.length; i++) {
-        right[i] = data[m+i+1];
+        right[i] = data[m+i+1]; //copying over values to the right half array
       }
-      mergesort(left, 0, left.length-1);
-      mergesort(right, 0, right.length-1);
+      mergesort(left, 0, left.length-1); //recursive call to left half array
+      mergesort(right, 0, right.length-1); //recursive call to right half array
       merge(left, right, data);
     }
   }
 
   private static void merge(int[] left, int[] right, int[] data) {
-    int leftCounter = 0;
-    int rightCounter = 0;
-    int counter = 0;
-    while(leftCounter < left.length && rightCounter < right.length) {
+    int leftCounter = 0; //keeps track of index of the left array
+    int rightCounter = 0; //keeps track of index of the right array
+    int counter = 0; //keeps track of index of the original array
+    while(leftCounter < left.length && rightCounter < right.length) {//when both left and right arrays still have values
       if (left[leftCounter] < right[rightCounter] ||
-          left[leftCounter] == right[rightCounter]) {
-        data[counter] = left[leftCounter];
-        leftCounter++;
+          left[leftCounter] == right[rightCounter]) { //if value of left array is greater or equal to the value of right array
+        data[counter] = left[leftCounter]; //copy that value so that it is the first value of the original array
+        leftCounter++; //increment left array index
       }
-      else {
-        data[counter] = right[rightCounter];
-        rightCounter++;
+      else { //if right array value is greater
+        data[counter] = right[rightCounter]; //copy over
+        rightCounter++; //increment right array index
       }
-      counter++;
+      counter++; //increment the index of the original array
     }
-    while (leftCounter < left.length) {
-      data[counter] = left[leftCounter];
-      counter++;
-      leftCounter++;
+    while (leftCounter < left.length) { //when there are values left over in left array
+      data[counter] = left[leftCounter]; //copy over
+      counter++; //increment index of original array
+      leftCounter++; //increment index of left array
     }
-    while (rightCounter < right.length) {
-      data[counter] = right[rightCounter];
-      counter++;
-      rightCounter++;
+    while (rightCounter < right.length) { //when there are values left over in right array
+      data[counter] = right[rightCounter]; //copy over
+      counter++; //increment index of original array
+      rightCounter++; //increment index of right array
     }
   }
 
+  //method that prints the array. used for debugging.
   public static String printArray(int[] data) {
     String result = "[";
     for (int i = 0; i < data.length; i++) {
@@ -69,7 +70,7 @@ public class Merge {
   }
   */
 
-
+  //mr.K's driver for quicksort, but changed it to mergesort
   public static void main(String[]args){
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
     int[]MAX_LIST = {1000000000,500,10};
