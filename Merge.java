@@ -9,21 +9,21 @@ public class Merge {
   private static void mergesort(int[] data, int lo, int hi) {
     int m = (lo+hi)/2;
     if (lo < hi) {
-      mergesort(data, lo, m);
-      mergesort(data, m+1, hi);
-      merge(data, lo, m, hi);
+      int[] left = new int[m-lo+1];
+      int[] right = new int[hi-m];
+      for (int i = 0; i < left.length; i++) {
+        left[i] = data[lo+i];
+      }
+      for (int i = 0; i < right.length; i++) {
+        right[i] = data[m+i+1];
+      }
+      mergesort(left, 0, left.length-1);
+      mergesort(right, 0, right.length-1);
+      merge(left, right, data);
     }
   }
 
-  private static void merge(int[] data, int lo, int m, int hi) {
-    int[] left = new int[m-lo+1];
-    int[] right = new int[hi-m];
-    for (int i = 0; i < left.length; i++) {
-      left[i] = data[lo];
-    }
-    for (int i = 0; i < right.length; i++) {
-      right[i] = data[i+m];
-    }
+  private static void merge(int[] left, int[] right, int[] data) {
     int leftCounter = 0;
     int rightCounter = 0;
     int counter = 0;
@@ -39,17 +39,15 @@ public class Merge {
       }
       counter++;
     }
-    if (rightCounter < right.length) {
-      for (int i = rightCounter; i < right.length; i++) {
-        data[counter] = right[rightCounter];
-        counter++;
-      }
+    while (leftCounter < left.length) {
+      data[counter] = left[leftCounter];
+      counter++;
+      leftCounter++;
     }
-    if (leftCounter < left.length) {
-      for (int i = leftCounter; i < left.length; i++) {
-        data[counter] = left[leftCounter];
-        counter++;
-      }
+    while (rightCounter < right.length) {
+      data[counter] = right[rightCounter];
+      counter++;
+      rightCounter++;
     }
   }
 
@@ -62,6 +60,7 @@ public class Merge {
     }
     return result;
   }
+
 
   public static void main(String[] args) {
     int[] data = {6, 5, 4, 3, 2, 1, 0};
@@ -106,17 +105,5 @@ public class Merge {
   }
   */
 
-
-
-  /*
-
-  is swap needed?
-
-  public static void swap(int index1, int index2, int[] data) {
-    int temp = data[index1];
-    data[index1] = data[index2];
-    data[index2] = temp;
-  }
-  */
 
 }
