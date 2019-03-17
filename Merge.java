@@ -3,7 +3,7 @@ import java.util.*;
 public class Merge {
 
   public static void mergesort(int[] data) {
-    mergesort(data, 0, data.length);
+    mergesort(data, 0, data.length-1);
   }
 
   private static void mergesort(int[] data, int lo, int hi) {
@@ -19,7 +19,7 @@ public class Merge {
     int[] left = new int[m-lo+1];
     int[] right = new int[hi-m];
     for (int i = 0; i < left.length; i++) {
-      left[i] = data[i];
+      left[i] = data[lo];
     }
     for (int i = 0; i < right.length; i++) {
       right[i] = data[i+m];
@@ -53,6 +53,17 @@ public class Merge {
     }
   }
 
+  public static String printArray(int[] data) {
+    String result = "[";
+    for (int i = 0; i < data.length; i++) {
+      if (i != data.length - 1)
+        result += data[i] + ", ";
+      else result += data[i] + "]";
+    }
+    return result;
+  }
+
+  /*
   public static void main(String[]args){
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
     int[]MAX_LIST = {1000000000,500,10};
@@ -87,6 +98,7 @@ public class Merge {
       System.out.println();
     }
   }
+  */
 
 
 
