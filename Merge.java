@@ -7,8 +7,8 @@ public class Merge {
   }
 
   private static void mergesort(int[] data, int lo, int hi) {
-    int m = (lo+hi)/2;
     if (lo < hi) {
+      int m = (lo+hi)/2;
       int[] left = new int[m-lo+1];
       int[] right = new int[hi-m];
       for (int i = 0; i < left.length; i++) {
@@ -61,14 +61,15 @@ public class Merge {
     return result;
   }
 
-
+  /*
   public static void main(String[] args) {
     int[] data = {6, 5, 4, 3, 2, 1, 0};
     mergesort(data);
     System.out.println(printArray(data));
   }
+  */
 
-  /*
+
   public static void main(String[]args){
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
     int[]MAX_LIST = {1000000000,500,10};
@@ -103,7 +104,6 @@ public class Merge {
       System.out.println();
     }
   }
-  */
 
 
 }
