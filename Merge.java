@@ -8,18 +8,23 @@ public class Merge {
 
   private static void mergesort(int[] data, int lo, int hi) {
     if (lo < hi) {
-      int m = (lo+hi)/2; //the index of the middle value when the array is split into halves
-      int[] left = new int[m-lo+1]; //left half of the splitted array
-      int[] right = new int[hi-m]; //right half of the splitted array
-      for (int i = 0; i < left.length; i++) {
-        left[i] = data[lo+i]; //copying over values to the left half array
+      if (hi-lo <= 10) {
+        insertionsort(data, lo, hi);
       }
-      for (int i = 0; i < right.length; i++) {
-        right[i] = data[m+i+1]; //copying over values to the right half array
+      else {
+        int m = (lo+hi)/2; //the index of the middle value when the array is split into halves
+        int[] left = new int[m-lo+1]; //left half of the splitted array
+        int[] right = new int[hi-m]; //right half of the splitted array
+        for (int i = 0; i < left.length; i++) {
+          left[i] = data[lo+i]; //copying over values to the left half array
+        }
+        for (int i = 0; i < right.length; i++) {
+          right[i] = data[m+i+1]; //copying over values to the right half array
+        }
+        mergesort(left, 0, left.length-1); //recursive call to left half array
+        mergesort(right, 0, right.length-1); //recursive call to right half array
+        merge(left, right, data);
       }
-      mergesort(left, 0, left.length-1); //recursive call to left half array
-      mergesort(right, 0, right.length-1); //recursive call to right half array
-      merge(left, right, data);
     }
   }
 
