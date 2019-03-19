@@ -62,6 +62,18 @@ public class Merge {
     return result;
   }
 
+  public static void insertionsort(int[] data, int lo, int hi) {
+    int temp = 0;
+    for (int i = lo+1; i < hi+1; i++) {
+      temp = data[i];
+      while (i > lo && temp < data[i-1]) {
+        data[i] = data[i-1];
+        i--;
+      }
+      data[i] = temp;
+    }
+  }
+
   /*
   public static void main(String[] args) {
     int[] data = {6, 5, 4, 3, 2, 1, 0};
