@@ -8,7 +8,7 @@ public class Merge {
 
   private static void mergesort(int[] data, int lo, int hi) {
     if (lo < hi) {
-      if (hi-lo <= 20) {
+      if (hi-lo <= 25) {
         insertionsort(data, lo, hi);
       }
       else {
